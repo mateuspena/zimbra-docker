@@ -4,11 +4,27 @@
 # Created by Jorge de la Cruz
 #################################################################
 FROM ubuntu:16.04
-MAINTAINER Jorge de la Cruz <jorgedlcruz@gmail.com>
+MAINTAINER Mateus Jesus <mateus.jesus@salvadorcard.com.br>
 
 RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  vim \
+  tzdata \
+  openssh-server \
+  openssh-client \
+  iputils-ping \
+  libperl5.22 \
+  sysstat \
+  sqlite3 \
+  pax \
+  libhttp-date-perl \
+  libgetopt-mixed-perl \
+  libgmp10 \
+  libmime-explode-perl \
+  file \
+  lvm2 \
+  libaio1 \
   wget \
   dialog \
   openssh-client \
@@ -19,6 +35,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   sudo \
   rsyslog \
   unzip
+  
+RUN echo "America/Bahia" > /etc/timezone && rm /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 VOLUME ["/opt/zimbra"]
 
@@ -28,4 +46,4 @@ COPY opt /opt/
 
 COPY etc /etc/
 
-CMD ["/bin/bash", "/opt/start.sh", "-d"]
+CMD ["/bin/bash"]
