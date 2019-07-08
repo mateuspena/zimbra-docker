@@ -11,8 +11,6 @@ RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   vim \
   tzdata \
-  openssh-server \
-  openssh-client \
   iputils-ping \
   libperl5.22 \
   sysstat \
